@@ -1,4 +1,3 @@
-const Character = require('./character')
 const { Warrior_Abilities } = require('../abilities')
 
 const Warrior = function Warrior(name, race) {
@@ -20,10 +19,9 @@ const Warrior = function Warrior(name, race) {
       current: Math.floor(20 + (this.str * 1.4))
     }
   }
-  Character.call(this, name, race)
-  Warrior_Abilities.call(this)
+  Warrior_Abilities.call(this, name, race)
 }
 
-Warrior.prototype = Object.create(Character.prototype)
+Warrior.prototype = Object.create(Warrior_Abilities.prototype)
 
 module.exports = Warrior

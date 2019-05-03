@@ -1,4 +1,3 @@
-const Character = require('./character')
 const { Hunter_Abilities } = require('../abilities')
 
 const Hunter = function Hunter(name, race, agi, str, wis, int) {
@@ -8,10 +7,9 @@ const Hunter = function Hunter(name, race, agi, str, wis, int) {
   this.str = str || 11;
   this.wis = wis || 7;
   this.int = int || 10;
-  Character.call(this, name, race)
-  Hunter_Abilities.call(this)
+  Hunter_Abilities.call(this, name, race)
 }
 
-Hunter.prototype = Object.create(Character.prototype)
+Hunter.prototype = Object.create(Hunter_Abilities.prototype)
 
 module.exports = Hunter

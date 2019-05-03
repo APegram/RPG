@@ -15,6 +15,7 @@ function Character(name, race) {
       current: Math.floor(20 + (this.str * 1.4))
     }
   }
+  this.skill_list = ['Attack', 'Potion', ...Object.keys(this.skills)]
   this.printStats = function () {
     console.log(`
     Name: ${this.name}
