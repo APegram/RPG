@@ -25,7 +25,7 @@ let Character = require('../classes/character')
 Warrior_Abilities.prototype = Object.create(Character.prototype)
 
 Warrior_Abilities.prototype.cast = function(ability){
-  ability = ability.toLowerCase()
+  ability = ability.toLowerCase().replace('_', ' ')
   switch (ability){
     case 'sweeping strike':
       return this.sweeping_strike(this.target)

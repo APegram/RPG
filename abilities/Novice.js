@@ -25,7 +25,7 @@ function Novice_Abilities(name, race){
 Novice_Abilities.prototype = Object.create(Character.prototype)
 
 Novice_Abilities.prototype.cast = function(ability){
-  ability = ability.toLowerCase()
+  ability = ability.toLowerCase().replace('_', ' ')
   switch (ability){
     case 'punch':
       return this.punch(this.target)

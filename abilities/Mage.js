@@ -24,8 +24,7 @@ function Mage_Abilities(name, race){
 Mage_Abilities.prototype = Object.create(Character.prototype)
 
 Mage_Abilities.prototype.cast = function(ability){
-  console.log(ability)
-  ability = ability.toLowerCase()
+  ability = ability.toLowerCase().replace('_', ' ')
   switch (ability){
     case 'fireball':
       return this.fireball(this.target)
