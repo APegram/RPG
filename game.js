@@ -1,12 +1,13 @@
 "use strict"
 //************* The Below Constructors take (name, race) arguments *****/
 const { Hunter, Mage, Novice, Rogue, Warrior } = require('./classes')
+let colors = require('colors')
 
-let P1 = new Mage('Dimose', 'Human');
-let P2 = new Rogue('Jo', 'Gnome');
-let P3 = new Hunter('Rosa', 'Undead');
-let P4 = new Novice('Jester', 'Frostling');
-let P5 = new Warrior('Fjore', 'Tigran');
+let P1 = new Mage('Dimose'.blue, 'Human');
+let P2 = new Rogue('Jo'.yellow, 'Gnome');
+let P3 = new Hunter('Rosa'.green, 'Undead');
+let P4 = new Novice('Jester'.cyan, 'Frostling');
+let P5 = new Warrior('Fjore'.red, 'Tigran');
 
 let players = [P1, P2, P3, P4, P5]
 let player_amt = players.length

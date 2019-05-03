@@ -1,0 +1,23 @@
+{
+  "name": "RPG",
+  "version": "1.0.0",
+  "description": "Simply run game.js with node and it will select two random fighters to battle one another to the death. They may use potions and attack currently. More functionality to come!",
+  "main": "game.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/APegram/RPG.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/APegram/RPG/issues"
+  },
+  "homepage": "https://github.com/APegram/RPG#readme",
+  "dependencies": {
+    "colors": "^1.3.3"
+  }
+}
