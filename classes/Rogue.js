@@ -1,4 +1,5 @@
 const Character = require('./character')
+const { Rogue_Abilities } = require('../abilities')
 
 const Rogue = function Rogue(name, race) {
   this.weapon = 'Dagger';
@@ -20,6 +21,7 @@ const Rogue = function Rogue(name, race) {
     }
   }
   Character.call(this, name, race)
+  Rogue_Abilities.call(this)
 }
 
 Rogue.prototype = Object.create(Character.prototype)
