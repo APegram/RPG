@@ -1,5 +1,5 @@
 {
-  "name": "RPG",
+  "name": "rpg",
   "version": "1.0.0",
   "description": "Simply run game.js with node and it will select two random fighters to battle one another to the death. They may use potions and attack currently. More functionality to come!",
   "main": "game.js",
