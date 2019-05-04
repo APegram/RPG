@@ -10,8 +10,9 @@ let P3 = new Hunter('Rosa', 'Undead');
 
 let party = [P1, P2, P3]
 
-let E1 = new Hob_Goblin()
-let enemies = [E1]
+let E1 = new Hob_Goblin(name = 'Goblin A')
+let E2 = new Hob_Goblin(name = 'Goblin B')
+let enemies = [E1, E2]
 
 let earned_xp = 0;
 let round = 0;
@@ -33,14 +34,15 @@ function combat(players, npcs){
     Round ${round}
     `)
   }
-  let target = undefined
 
   let initiative = [...players, ...npcs]
   initiative.sort((a, b) => (a.spd > b.spd) ? -1 : 1)
 
   initiative.forEach(character => {
-    players.indexOf(character) < 0 ? target = players[Math.floor(Math.random() * player_count)] : target = npcs[Math.floor(Math.random() * enemy_count)];
-    character.auto_attack(target)
+    players.indexOf(character) < 0 ? character.target = players[Math.floor(Math.random() * player_count)] : character.target = npcs[Math.floor(Math.random() * enemy_count)];
+    let length = character.skill_list.length
+    let skill = character.skill_list[Math.floor(Math.random() * length)]
+    character.cast(skill)
   })
 
   let remaining_players = initiative.filter(character => character.resources.health.current > 0 && character.type === 'player')
@@ -63,6 +65,8 @@ function victory(earned_xp){
       console.log(`
       ${player.name} has reached level ${player.level}!!
       `)
+    } else {
+      return
     }
   })
 }

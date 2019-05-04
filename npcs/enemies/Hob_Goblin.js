@@ -1,7 +1,7 @@
 'use strict'
 
 class Hob_Goblin {
-  constructor(level = 1, name = 'Hob_Goblin') {
+  constructor(name = 'Hob Goblin', level = 1) {
     const skill_level = 1 + Math.round(level / 3);
     this.type = 'npc';
     this.name = name;
@@ -14,7 +14,7 @@ class Hob_Goblin {
         current: 30 * this.level_modifier
       }
     };
-    this.xp_value = Math.floor(55 * this.level_modifier);
+    this.xp_value = Math.floor(5 * this.level_modifier);
     this.skills = {
       attack: {
         name: 'Attack',
