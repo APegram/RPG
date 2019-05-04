@@ -6,8 +6,11 @@ You can change the game mode of game.js by commenting out the solo battles, and 
 
 Run player_vs_npc.js to see that demo as well.
 
+## Random 1v1 ##
 ![Random One Vs One](/gifs/random_1v1.gif)
 
+## Battle Royale ##
 ![Battle Royale](/gifs/battle_royale.gif)
 
+## Player Party vs NPC ##
 ![Player VS NPC](/gifs/player_vs_npc.gif)
