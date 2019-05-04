@@ -6,6 +6,8 @@ let P1 = new Mage('Dimose', 'Human');
 let P2 = new Rogue('Jo', 'Gnome');
 let P3 = new Hunter('Rosa', 'Undead');
 
+
+
 let party = [P1, P2, P3]
 
 let E1 = new Hob_Goblin()
@@ -34,7 +36,7 @@ function combat(players, npcs){
   let target = undefined
 
   let initiative = [...players, ...npcs]
-  initiative.sort((a, b) => (a.speed > b.speed) ? -1 : 1)
+  initiative.sort((a, b) => (a.spd > b.spd) ? -1 : 1)
 
   initiative.forEach(character => {
     players.indexOf(character) < 0 ? target = players[Math.floor(Math.random() * player_count)] : target = npcs[Math.floor(Math.random() * enemy_count)];

@@ -1,16 +1,11 @@
 const { Novice_Abilities } = require('../abilities')
 
-const Novice = function Novice(name, race) {
-  this.weapon = 'Fist';
-  this.className = 'novice';
-  this.agi = 11;
-  this.str = 11;
-  this.wis = 11;
-  this.int = 11;
-  this.speed = 7
-  Novice_Abilities.call(this, name, race)
+class Novice extends Novice_Abilities{
+  constructor(name, race, agi = 1, str = 11, wis = 11, int = 11, spd = 7) {
+    super(name, race, agi, str, wis, int, spd)
+    this.weapon = 'Fist';
+    this.className = 'novice';
+  }
 }
-
-Novice.prototype = Object.create(Novice_Abilities.prototype)
 
 module.exports = Novice

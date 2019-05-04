@@ -1,16 +1,11 @@
 const { Mage_Abilities } = require('../abilities')
 
-const Mage = function Mage(name, race) {
-  this.weapon = 'Wand';
-  this.className = 'mage';
-  this.agi = 7;
-  this.str = 7
-  this.wis = 16;
-  this.int = 14;
-  this.speed = 5;
-  Mage_Abilities.call(this, name, race)
+class Mage extends Mage_Abilities{
+  constructor(name, race, agi = 7, str = 7, wis = 16, int = 14, spd = 5) {
+    super(name, race, agi, str, wis, int, spd)
+    this.weapon = 'Wand';
+    this.className = 'mage';
+  }
 }
-
-Mage.prototype = Object.create(Mage_Abilities.prototype)
 
 module.exports = Mage
