@@ -7,6 +7,7 @@ const Warrior = function Warrior(name, race) {
   this.str = 20;
   this.wis = 6;
   this.int = 6;
+  this.speed = 6
   this.resources = {
     ability: {
       type: 'Rage',

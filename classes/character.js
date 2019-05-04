@@ -1,6 +1,12 @@
 "use strict"
 
 function Character(name, race) {
+  this.type = 'player'
+  this.level = 1
+  this.xp = {
+    current: 0,
+    max: 33
+  }
   this.name = name;
   this.race = race;
   this.resources = this.resources || {
@@ -32,6 +38,16 @@ function Character(name, race) {
     `)
   }
 }
+
+Character.prototype.level_up = function () {
+  if (this.xp.current >= this.xp.max){
+    this.level += 1;
+    this.xp.current = 0;
+    this.xp.max = 33 * this.level
+    console.log(`Congratulations ${this.name} is now level ${this.level}`)
+  }
+}
+
 Character.prototype.use_potion = function () {
   let healed = Math.floor(Math.random() * 4) + 1
   let healedTo = this.resources.health.current + healed

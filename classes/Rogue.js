@@ -7,6 +7,7 @@ const Rogue = function Rogue(name, race) {
   this.str = 9;
   this.wis = 8;
   this.int = 7;
+  this.speed = 9;
   this.resources = {
     ability: {
       type: 'Energy',

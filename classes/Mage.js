@@ -7,6 +7,7 @@ const Mage = function Mage(name, race) {
   this.str = 7
   this.wis = 16;
   this.int = 14;
+  this.speed = 5;
   Mage_Abilities.call(this, name, race)
 }
 

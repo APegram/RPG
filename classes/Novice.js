@@ -7,6 +7,7 @@ const Novice = function Novice(name, race) {
   this.str = 11;
   this.wis = 11;
   this.int = 11;
+  this.speed = 7
   Novice_Abilities.call(this, name, race)
 }
 
