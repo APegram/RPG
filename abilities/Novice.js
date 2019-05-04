@@ -7,7 +7,7 @@ function Novice_Abilities(name, race){
       level: 1,
       min_dmg: 4,
       max_dmg: 5,
-      modifier: null,
+      modifier: 1,
       cost: 5
     },
     rock_throw: {
@@ -15,7 +15,7 @@ function Novice_Abilities(name, race){
       level: 1,
       min_dmg: 3,
       max_dmg: 4,
-      modifier: null,
+      modifier: 1,
       cost: 6
     }
   }

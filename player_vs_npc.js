@@ -48,7 +48,7 @@ function combat(players, npcs){
     }
   })
   let remaining_npcs = initiative.filter(character => character.resources.health.current > 0 && character.type === 'npc')
-  setTimeout(() => combat(remaining_players, remaining_npcs), 2000)
+  setTimeout(() => combat(remaining_players, remaining_npcs), 3000)
 }
 
 function victory(earned_xp){
