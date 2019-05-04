@@ -7,10 +7,10 @@ You can change the game mode of game.js by commenting out the solo battles, and 
 Run player_vs_npc.js to see that demo as well.
 
 ### Random One Vs One ###
-![](.gifs/random_1v1.gif)
+![](https://github.com/APegram/RPG/gifs/random_1v1.gif)
 
 ### Battle Royale ###
-![](.gifs/battle_royale.gif)
+![](https://github.com/APegram/RPGgifs/battle_royale.gif)
 
 ### Player VS NPC ###
-![](.gifs/player_vs_npc.gif)
+![](https://github.com/APegram/RPGgifs/player_vs_npc.gif)
