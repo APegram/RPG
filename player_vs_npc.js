@@ -9,13 +9,21 @@ let P3 = new Hunter('Rosa', 'Undead');
 
 
 let party = [P1, P2, P3]
-
-let E1 = new Hob_Goblin(name = 'Goblin A')
-let E2 = new Hob_Goblin(name = 'Goblin B')
-let enemies = [E1, E2]
+let enemies = []
 
 let earned_xp = 0;
 let round = 0;
+
+function pre_combat(party){
+  let enemy_gen = Math.floor(Math.random() * 4) + 1
+  for (let i = 0; i < enemy_gen; i++){
+    let alpha = 65 + i;
+
+    let new_enemy = new Hob_Goblin(`Goblin ${String.fromCharCode(alpha)}`)
+    enemies.push(new_enemy)
+  }
+  combat(party, enemies)
+}
 
 function combat(players, npcs){
   round++
@@ -71,5 +79,5 @@ function victory(earned_xp){
   })
 }
 
-combat(party, enemies)
+pre_combat(party)
 

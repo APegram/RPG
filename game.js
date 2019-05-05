@@ -82,16 +82,16 @@ function battleRoyale(attackers){
 //******* Keep which mode you would like to run uncommented down below *****/
 //*** ONE VERSUS ONE ****/
 
-let player_one = players[Math.floor(Math.random()* player_amt)]
-  let remaining_players = players.filter(player => {
-    if (player_one !== player) return player
-  })
-  player_amt = remaining_players.length
-  let player_two = remaining_players[Math.floor(Math.random() * player_amt)]
-  let fighting = setInterval(() => {fight(player_one, player_two)}, 1000)
-  fight(player_one, player_two)
+// let player_one = players[Math.floor(Math.random()* player_amt)]
+//   let remaining_players = players.filter(player => {
+//     if (player_one !== player) return player
+//   })
+//   player_amt = remaining_players.length
+//   let player_two = remaining_players[Math.floor(Math.random() * player_amt)]
+//   let fighting = setInterval(() => {fight(player_one, player_two)}, 1000)
+//   fight(player_one, player_two)
 
 //*** Battle Royale Free For All ***/
 
-// battleRoyale(players);
-// let battleRoyaling = setInterval(() => battleRoyale(players), 3000);
+battleRoyale(players);
+let battleRoyaling = setInterval(() => battleRoyale(players), 3000);
