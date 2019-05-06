@@ -1,6 +1,7 @@
-const { Rogue_Abilities } = require('../abilities')
+let Character = require('./character')
+let { Back_Stab, Vanishing_Strike } = require('../abilities/Rogue')
 
-class Rogue extends Rogue_Abilities{
+class Rogue extends Character{
   constructor(name, race, agi = 20, str = 9, wis = 8, int = 7, spd = 9) {
     super(name, race, agi, str, wis, int, spd)
     this.weapon = 'Dagger';
@@ -17,6 +18,10 @@ class Rogue extends Rogue_Abilities{
         current: Math.floor(20 + (this.str * 1.4))
       }
     };
+    this.skills = [
+      new Back_Stab(this),
+      new Vanishing_Strike(this),
+    ]
   }
 }
 

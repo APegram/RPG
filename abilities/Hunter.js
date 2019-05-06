@@ -1,59 +1,44 @@
-let Character = require('../classes/character')
+const Ability = require('./ability')
 
-class Hunter_Abilities  extends Character{
-  constructor(name, race, agi, str, wis, int, spd) {
-    super(name, race, agi, str, wis, int, spd)
-    this.skills = {
-      explosive_shot: {
-        name: 'Explosive Shot',
-        level: 1,
-        min_dmg: 1,
-        max_dmg: 8,
-        modifier: 1 + .001 * this.agi,
-        cost: 5
-      },
-      piercing_arrow: {
-        name: 'Piercing Arrow',
-        level: 1,
-        min_dmg: 3,
-        max_dmg: 7,
-        modifier: 1 + .0015 * this.int,
-        cost: 6
-      }
-    };
-    this.skill_list = ['Attack', 'Potion', ...Object.keys(this.skills)];
+class Explosive_Shot extends Ability{
+  constructor(self){
+    super()
+    this.self = self
+    this.name = 'Explosive Shot';
+    this.level = 1;
+    this.min = 1;
+    this.max = 8 - this.min;
+    this.modifier = 1 + .001 * this.self.agi
+    this.cost = 5;
   }
-  cast(ability) {
-    ability = ability.toLowerCase().replace('_', ' ');
-    switch (ability) {
-      case 'explosive shot':
-        return this.explosive_shot(this.target);
-      case 'piercing arrow':
-        return this.piercing_arrow(this.target);
-      case 'potion':
-        return this.use_potion();
-      default:
-        return this.auto_attack(this.target);
-    }
-  }
-  explosive_shot(target, spell = this.skills.explosive_shot) {
-    let min = spell.min_dmg;
-    let max = spell.max_dmg - min;
-    let modifier = spell.modifier;
-    let dmg = Math.floor((Math.random() * (max) + min) * modifier);
-    this.resources.ability.current -= spell.cost;
-    console.log(`${this.name} fired ${spell.name} at ${target.name} for ${dmg} damage!`);
-    target.resources.health.current -= dmg;
-  }
-  piercing_arrow(target, spell = this.skills.piercing_arrow) {
-    let min = spell.min_dmg;
-    let max = spell.max_dmg - min;
-    let modifier = spell.modifier;
-    let dmg = Math.floor((Math.random() * (max) + min) * modifier);
-    this.resources.ability.current -= spell.cost;
-    console.log(`${this.name} fired ${spell.name} at ${target.name} for ${dmg} damage!`);
+  use(target) {
+    let dmg = Math.floor((Math.random() * (this.max) + this.min) * this.modifier);
+    this.self.resources.ability.current -= this.cost;
+    console.log(`${this.self.name} fired ${this.name} at ${target.name} for ${dmg} damage!`);
     target.resources.health.current -= dmg;
   }
 }
 
-module.exports = Hunter_Abilities
+class Piercing_Arrow extends Ability{
+  constructor(self, modifier){
+    super()
+    this.self = self
+    this.name = 'Piercing Arrow';
+    this.level = 1;
+    this.min = 3;
+    this.max = 7 - this.min;
+    this.modifier = 1 + .0015 * modifier;
+    this.cost = 6;
+  }
+  use(target) {
+    let dmg = Math.floor((Math.random() * (this.max) + this.min) * this.modifier);
+    this.self.resources.ability.current -= this.cost;
+    console.log(`${this.self.name} fired ${this.name} at ${target.name} for ${dmg} damage!`);
+    target.resources.health.current -= dmg;
+  }
+}
+
+module.exports = {
+  Explosive_Shot,
+  Piercing_Arrow,
+}

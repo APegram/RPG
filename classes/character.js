@@ -43,41 +43,41 @@ class Character {
     `);
     };
   }
-  level_up() {
-    if (this.xp.current >= this.xp.max) {
-      this.level += 1;
-      this.xp.current = 0;
-      this.xp.max = 33 * this.level;
-      console.log(`Congratulations ${this.name} is now level ${this.level}`);
-    }
-  }
-  use_potion() {
-    let healed = Math.floor(Math.random() * 4) + 1;
-    let healedTo = this.resources.health.current + healed;
-    if (healedTo > this.resources.health.max)
-      this.resources.health.current = this.resources.health.max;
-    else
-      this.resources.health.current = healedTo;
-    console.log(`${this.name} used a potion and healed for ${healed}`);
-  }
-  auto_attack(attack_who) {
-    let health_regen;
-    let ap_regen;
-    // if (this.resources.health.current < this.resources.health.max)
-    //   health_regen = setInterval(() => {this.hp_regen()}, 5000)
-    // else 
-    //   clearInterval(health_regen)
-    // if (this.resources.ability.current < this.resources.ability.max)
-    //   ap_regen = setInterval(() => {this.ap_regen()}, 2000)
-    // else
-    //   clearInterval(ap_regen)
-    let dmg = Math.floor(Math.random() * 10);
-    attack_who.resources.health.current -= dmg;
-    if (dmg !== 0)
-      console.log(`${this.name} attacks ${attack_who.name} with ${this.weapon} for ${dmg} damage`);
-    else
-      console.log(`${this.name} misses ${attack_who.name}`);
-  }
+//   level_up() {
+//     if (this.xp.current >= this.xp.max) {
+//       this.level += 1;
+//       this.xp.current = 0;
+//       this.xp.max = 33 * this.level;
+//       console.log(`Congratulations ${this.name} is now level ${this.level}`);
+//     }
+//   }
+//   use_potion() {
+//     let healed = Math.floor(Math.random() * 4) + 1;
+//     let healedTo = this.resources.health.current + healed;
+//     if (healedTo > this.resources.health.max)
+//       this.resources.health.current = this.resources.health.max;
+//     else
+//       this.resources.health.current = healedTo;
+//     console.log(`${this.name} used a potion and healed for ${healed}`);
+//   }
+//   auto_attack(attack_who) {
+//     let health_regen;
+//     let ap_regen;
+//     // if (this.resources.health.current < this.resources.health.max)
+//     //   health_regen = setInterval(() => {this.hp_regen()}, 5000)
+//     // else 
+//     //   clearInterval(health_regen)
+//     // if (this.resources.ability.current < this.resources.ability.max)
+//     //   ap_regen = setInterval(() => {this.ap_regen()}, 2000)
+//     // else
+//     //   clearInterval(ap_regen)
+//     let dmg = Math.floor(Math.random() * 10);
+//     attack_who.resources.health.current -= dmg;
+//     if (dmg !== 0)
+//       console.log(`${this.name} attacks ${attack_who.name} with ${this.weapon} for ${dmg} damage`);
+//     else
+//       console.log(`${this.name} misses ${attack_who.name}`);
+//   }
 }
 
 module.exports = Character
