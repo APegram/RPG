@@ -1,5 +1,6 @@
 let Character = require('./character')
 let { Fireball, Frostbolt } = require('../abilities/Mage')
+let { Attack } = require('../abilities/Basic')
 
 class Mage extends Character{
   constructor(name, race, agi = 7, str = 7, wis = 16, int = 14, spd = 5) {
@@ -9,6 +10,7 @@ class Mage extends Character{
     this.skills = [
       new Fireball(this),
       new Frostbolt(this),
+      new Attack(this),
     ]
   }
 }

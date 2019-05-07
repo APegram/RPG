@@ -1,5 +1,8 @@
 class Ability {
-  use(target) {
+  constructor(self){
+    this.target = self
+  }
+  use() {
     throw new Error("Abstract method.");
   }
 }

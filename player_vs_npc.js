@@ -48,9 +48,8 @@ function combat(players, npcs){
 
   initiative.forEach(character => {
     players.indexOf(character) < 0 ? character.target = players[Math.floor(Math.random() * player_count)] : character.target = npcs[Math.floor(Math.random() * enemy_count)];
-    let length = character.skill_list.length
-    let skill = character.skill_list[Math.floor(Math.random() * length)]
-    character.cast(skill)
+    let length = character.skills.length
+    character.skills[Math.floor(Math.random() * length)].use()
   })
 
   let remaining_players = initiative.filter(character => character.resources.health.current > 0 && character.type === 'player')
