@@ -17,13 +17,10 @@ let lose_banner = `**********************************`.red
 function fight(p1, p2, index, battle_type = '1v1'){
   p1.target = p2 || null
   p2.target = p1 || null
-  let length = p1.skill_list.length
-  let length2 = p2.skill_list.length
-  let p1_skill = p1.skill_list[Math.floor(Math.random() * length)]
-  let p2_skill = p2.skill_list[Math.floor(Math.random() * length2)]
-
-  p1.cast(p1_skill)
-  p2.cast(p2_skill)
+  let length = p1.skills.length
+  let length2 = p2.skills.length
+  p1.skills[Math.floor(Math.random() * length)].use()
+  p2.skills[Math.floor(Math.random() * length2)].use()
 
   if (index === (players.length - 1)){
     players = players.filter(player => player.resources.health.current > 0)
@@ -82,16 +79,16 @@ function battleRoyale(attackers){
 //******* Keep which mode you would like to run uncommented down below *****/
 //*** ONE VERSUS ONE ****/
 
-let player_one = players[Math.floor(Math.random()* player_amt)]
-  let remaining_players = players.filter(player => {
-    if (player_one !== player) return player
-  })
-  player_amt = remaining_players.length
-  let player_two = remaining_players[Math.floor(Math.random() * player_amt)]
-  let fighting = setInterval(() => {fight(player_one, player_two)}, 1000)
-  fight(player_one, player_two)
+// let player_one = players[Math.floor(Math.random()* player_amt)]
+//   let remaining_players = players.filter(player => {
+//     if (player_one !== player) return player
+//   })
+//   player_amt = remaining_players.length
+//   let player_two = remaining_players[Math.floor(Math.random() * player_amt)]
+//   let fighting = setInterval(() => {fight(player_one, player_two)}, 1000)
+//   fight(player_one, player_two)
 
 //*** Battle Royale Free For All ***/
 
-// battleRoyale(players);
-// let battleRoyaling = setInterval(() => battleRoyale(players), 3000);
+battleRoyale(players);
+let battleRoyaling = setInterval(() => battleRoyale(players), 3000);

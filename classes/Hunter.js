@@ -1,16 +1,16 @@
-const { Hunter_Abilities } = require('../abilities')
+let Character = require('./character')
+let { Explosive_Shot, Piercing_Arrow } = require('../abilities/Hunter')
 
-const Hunter = function Hunter(name, race, agi, str, wis, int, speed) {
-  this.weapon = 'Long Bow'
-  this.className = 'hunter'
-  this.agi = agi || 16;
-  this.str = str || 11;
-  this.wis = wis || 7;
-  this.int = int || 10;
-  this.speed = speed || 9
-  Hunter_Abilities.call(this, name, race)
+class Hunter extends Character {
+  constructor(name, race, agi = 16, str = 11, wis = 7, int = 19, spd = 9) {
+    super(name, race, agi, str, wis, int, spd)
+    this.weapon = 'Long Bow';
+    this.className = 'hunter';
+    this.skills = [
+      new Explosive_Shot(this, agi),
+      new Piercing_Arrow(this, agi)
+    ]
+  }
 }
-
-Hunter.prototype = Object.create(Hunter_Abilities.prototype)
 
 module.exports = Hunter

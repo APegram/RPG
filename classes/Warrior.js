@@ -1,28 +1,28 @@
-const { Warrior_Abilities } = require('../abilities')
+let Character = require('./character');
+let { Sweeping_Strike, Shield_Bash } = require('../abilities/Warrior');
 
-const Warrior = function Warrior(name, race) {
-  this.weapon = '1h Sword';
-  this.className = 'warrior';
-  this.agi = 12;
-  this.str = 20;
-  this.wis = 6;
-  this.int = 6;
-  this.speed = 6
-  this.resources = {
-    ability: {
-      type: 'Rage',
-      max: 100,
-      current: 100,
-    },
-    health: {
-      type: 'Health',
-      max: Math.floor(20 + (this.str * 1.4)),
-      current: Math.floor(20 + (this.str * 1.4))
-    }
+class Warrior extends Character{
+  constructor(name, race, agi = 12, str = 20, wis = 6, int = 6, spd = 7) {
+    super(name, race, agi, str, wis, int, spd)
+    this.weapon = '1h Sword';
+    this.className = 'warrior';
+    this.resources = {
+      ability: {
+        type: 'Rage',
+        max: 100,
+        current: 100,
+      },
+      health: {
+        type: 'Health',
+        max: Math.floor(20 + (this.str * 1.4)),
+        current: Math.floor(20 + (this.str * 1.4))
+      }
+    };
+    this.skills = [
+      new Sweeping_Strike(this),
+      new Shield_Bash(this)
+    ]
   }
-  Warrior_Abilities.call(this, name, race)
 }
-
-Warrior.prototype = Object.create(Warrior_Abilities.prototype)
 
 module.exports = Warrior

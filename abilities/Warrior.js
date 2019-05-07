@@ -1,61 +1,44 @@
-let Character = require('../classes/character')
+const Ability = require('./ability')
 
- function Warrior_Abilities(name, race){
-  this.skills = {
-    sweeping_strike: {
-      name: 'Sweeping Strike',
-      level: 1,
-      min_dmg: 4,
-      max_dmg: 7,
-      modifier: 1 + .001*this.str,
-      cost: 5
-    },
-    shield_bash: {
-      name: 'Shield Bash',
-      level: 1,
-      min_dmg: 5,
-      max_dmg: 5,
-      modifier: 1 + .0015*this.str, //maybe add defensive modifier?
-      cost: 6
-    }
+class Sweeping_Strike extends Ability{
+  constructor(self){
+    super(self)
+    this.self = self;
+    this.name = 'Sweeping Strike';
+    this.level = 1;
+    this.min = 4;
+    this.max = 7 - this.min;
+    this.modifier = 1 + .001 * this.self.str;
+    this.cost = 5;
   }
-  Character.call(this, name, race)
-}
-
-Warrior_Abilities.prototype = Object.create(Character.prototype)
-
-Warrior_Abilities.prototype.cast = function(ability){
-  ability = ability.toLowerCase().replace('_', ' ')
-  switch (ability){
-    case 'sweeping strike':
-      return this.sweeping_strike(this.target)
-    case 'shield bash':
-      return this.shield_bash(this.target)
-    case 'potion':
-      return this.use_potion()
-    default:
-      return this.auto_attack(this.target)
+  use(target) {
+    let dmg = Math.floor((Math.random() * (this.max) + this.min) * this.modifier);
+    this.self.resources.ability.current -= this.cost;
+    console.log(`${this.self.name} uses ${this.name} and hits ${this.self.target.name} for ${dmg} damage!`);
+    this.self.target.resources.health.current -= dmg;
   }
 }
 
-Warrior_Abilities.prototype.sweeping_strike = function (target, spell = this.skills.sweeping_strike){
-  let min = spell.min_dmg;
-  let max = spell.max_dmg - min;
-  let modifier = spell.modifier;
-  let dmg = Math.floor((Math.random() * (max) + min) * modifier);
-  this.resources.ability.current -= spell.cost;
-  console.log(`${this.name} uses ${spell.name} and hits ${target.name} for ${dmg} damage!`)
-  target.resources.health.current -= dmg;
+class Shield_Bash extends Ability{
+  constructor(self){
+    super(self)
+    this.self = self
+    this.name = 'Shield Bash';
+    this.level = 1;
+    this.min = 5;
+    this.max = 5;
+    this.modifier = 1 + .0015 * this.self.str
+    this.cost = 6;
+  }
+  use() {
+    let dmg = Math.floor((Math.random() * (this.max) + this.min) * this.modifier);
+    this.self.resources.ability.current -= this.cost;
+    console.log(`${this.self.name} uses ${this.name} and hits ${this.self.target.name} for ${dmg} damage!`);
+    this.self.target.resources.health.current -= dmg;
+  }
 }
 
-Warrior_Abilities.prototype.shield_bash = function (target, spell = this.skills.shield_bash){
-  let min = spell.min_dmg;
-  let max = spell.max_dmg - min;
-  let modifier = spell.modifier;
-  let dmg = Math.floor((Math.random() * (max) + min) * modifier);
-  this.resources.ability.current -= spell.cost;
-  console.log(`${this.name} uses ${spell.name} and hits ${target.name} for ${dmg} damage!`)
-  target.resources.health.current -= dmg;
+module.exports = {
+  Sweeping_Strike,
+  Shield_Bash,
 }
-
-module.exports = Warrior_Abilities

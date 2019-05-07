@@ -1,60 +1,44 @@
-let Character = require('../classes/character')
+const Ability = require('./ability')
 
-function Hunter_Abilities(name, race){
-  this.skills = {
-    explosive_shot: {
-      name: 'Explosive Shot',
-      level: 1,
-      min_dmg: 1,
-      max_dmg: 8,
-      modifier: 1 + .001*this.agi,
-      cost: 5
-    },
-    piercing_arrow: {
-      name: 'Piercing Arrow',
-      level: 1,
-      min_dmg: 3,
-      max_dmg: 7,
-      modifier: 1 + .0015*this.int,
-      cost: 6
-    }
+class Explosive_Shot extends Ability{
+  constructor(self){
+    super(self)
+    this.self = self
+    this.name = 'Explosive Shot';
+    this.level = 1;
+    this.min = 1;
+    this.max = 8 - this.min;
+    this.modifier = 1 + .001 * this.self.agi
+    this.cost = 5;
   }
-  Character.call(this, name, race)
-}
-Hunter_Abilities.prototype = Object.create(Character.prototype)
-
-Hunter_Abilities.prototype.cast = function(ability){
-  ability = ability.toLowerCase().replace('_', ' ')
-  switch (ability){
-    case 'explosive shot':
-      return this.explosive_shot(this.target)
-    case 'piercing arrow':
-      return this.piercing_arrow(this.target)
-    case 'potion':
-      return this.use_potion()
-    default:
-      return this.auto_attack(this.target)
+  use() {
+    let dmg = Math.floor((Math.random() * (this.max) + this.min) * this.modifier);
+    this.self.resources.ability.current -= this.cost;
+    console.log(`${this.self.name} fired ${this.name} at ${this.self.target.name} for ${dmg} damage!`);
+    this.self.target.resources.health.current -= dmg;
   }
 }
 
-Hunter_Abilities.prototype.explosive_shot = function (target, spell = this.skills.explosive_shot){
-  let min = spell.min_dmg;
-  let max = spell.max_dmg - min;
-  let modifier = spell.modifier;
-  let dmg = Math.floor((Math.random() * (max) + min) * modifier);
-  this.resources.ability.current -= spell.cost;
-  console.log(`${this.name} fired ${spell.name} at ${target.name} for ${dmg} damage!`)
-  target.resources.health.current -= dmg;
+class Piercing_Arrow extends Ability{
+  constructor(self){
+    super(self)
+    this.self = self
+    this.name = 'Piercing Arrow';
+    this.level = 1;
+    this.min = 3;
+    this.max = 7 - this.min;
+    this.modifier = 1 + .0015 * this.self.agi;
+    this.cost = 6;
+  }
+  use() {
+    let dmg = Math.floor((Math.random() * (this.max) + this.min) * this.modifier);
+    this.self.resources.ability.current -= this.cost;
+    console.log(`${this.self.name} fired ${this.name} at ${this.self.target.name} for ${dmg} damage!`);
+    this.self.target.resources.health.current -= dmg;
+  }
 }
 
-Hunter_Abilities.prototype.piercing_arrow = function (target, spell = this.skills.piercing_arrow){
-  let min = spell.min_dmg;
-  let max = spell.max_dmg - min;
-  let modifier = spell.modifier;
-  let dmg = Math.floor((Math.random() * (max) + min) * modifier);
-  this.resources.ability.current -= spell.cost;
-  console.log(`${this.name} fired ${spell.name} at ${target.name} for ${dmg} damage!`)
-  target.resources.health.current -= dmg;
+module.exports = {
+  Explosive_Shot,
+  Piercing_Arrow,
 }
-
-module.exports = Hunter_Abilities
