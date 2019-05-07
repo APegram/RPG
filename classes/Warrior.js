@@ -1,9 +1,10 @@
 let Character = require('./character');
 let { Sweeping_Strike, Shield_Bash } = require('../abilities/Warrior');
+let { Attack } = require('../abilities/Basic')
 
 class Warrior extends Character{
-  constructor(name, race, agi = 12, str = 20, wis = 6, int = 6, spd = 7) {
-    super(name, race, agi, str, wis, int, spd)
+  constructor(name, race, level = 1, agi = 12, str = 20, wis = 6, int = 6, spd = 7, xp = 0) {
+    super(name, race, level, agi, str, wis, int, spd, xp)
     this.weapon = '1h Sword';
     this.className = 'warrior';
     this.resources = {
@@ -19,8 +20,9 @@ class Warrior extends Character{
       }
     };
     this.skills = [
-      new Sweeping_Strike(this),
-      new Shield_Bash(this)
+      new Sweeping_Strike(this.str),
+      new Shield_Bash(this.str),
+      new Attack(this.str)
     ]
   }
 }
