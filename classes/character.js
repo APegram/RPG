@@ -15,7 +15,7 @@ class Character {
     this.str = str;
     this.wis = wis;
     this.int = int;
-    this.spd = spd
+    this.spd = spd;
     this.resources = this.resources || {
       ability: {
         type: 'Mana',
@@ -45,18 +45,6 @@ class Character {
     };
   }
 
-  level_up() {
-    if (this.xp.current >= this.xp.max) {
-      this.level += 1;
-      this.xp.current = this.xp.max - this.xp.current
-      this.xp.max = 33 * this.level;
-      console.log(`Congratulations ${this.name} is now level ${this.level}`);
-      if (this.xp.current >= this.xp.max){
-        this.level_up()
-      }
-    }
-  }
-
   use(skillIndex, target) {
     this.skills[skillIndex].use(this, target)
   }
@@ -67,6 +55,17 @@ class Character {
 
   takeDamage(amount) {
     this.resources.health.current -= amount;
+  }
+  levelUp(amount){
+    this.xp.current += amount || 0
+    if (this.xp.current > this.xp.max){
+      this.level++
+      this.xp.current -= this.xp.max
+      this.xp.max *= 2
+      console.log(`${this.name} has reached level ${this.level}!`)
+      this.levelUp()
+    }
+    return
   }
 }
 

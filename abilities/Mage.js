@@ -1,15 +1,12 @@
-const Ability = require('./ability')
+const { Direct_Damage_Ability } = require('./ability')
 
-class Fireball extends Ability{
+//-- Super('spell name', level, min dmg, max dmg, cost, modifier math (if none, defaults to 1)) ---------------
+
+class Fireball extends Direct_Damage_Ability{
   constructor(modifier){
-    super()
-    this.name = 'Fireball';
-    this.level = 1;
-    this.min = 2;
-    this.max = 7 - this.min;
-    this.modifier = 1 + .001 * modifier
-    this.cost = 5;
+    super('Fireball', 1, 2, 7, 5, (1+.001*modifier))
   }
+
   use(user, target) {
     let dmg = Math.floor((Math.random() * (this.max) + this.min) * this.modifier);
     user.useAbilityPoints(this.cost)
@@ -18,16 +15,11 @@ class Fireball extends Ability{
   }
 }
 
-class Frostbolt extends Ability{
+class Frostbolt extends Direct_Damage_Ability{
   constructor(modifier){
-    super()
-    this.name = 'Frostbolt';
-    this.level = 1;
-    this.min = 3;
-    this.max = 6 - this.min;
-    this.modifier = 1 + .0015 * modifier;
-    this.cost = 5;
+    super('Frostbolt', 1, 3, 6, 5, (1+.0015*modifier))
   }
+
   use(user, target) {
     let dmg = Math.floor((Math.random() * (this.max) + this.min) * this.modifier);
     user.useAbilityPoints(this.cost)
