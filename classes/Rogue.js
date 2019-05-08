@@ -1,9 +1,10 @@
-let Character = require('./character')
-let { Back_Stab, Vanishing_Strike } = require('../abilities/Rogue')
+let Character = require('./character');
+let { Back_Stab, Vanishing_Strike } = require('../abilities/Rogue');
+let { Attack } = require('../abilities/Basic');
 
 class Rogue extends Character{
-  constructor(name, race, agi = 20, str = 9, wis = 8, int = 7, spd = 9) {
-    super(name, race, agi, str, wis, int, spd)
+  constructor(name, race, level = 1, agi = 20, str = 9, wis = 8, int = 7, spd = 9, xp = 0) {
+    super(name, race, level, agi, str, wis, int, spd, xp)
     this.weapon = 'Dagger';
     this.className = 'rogue';
     this.resources = {
@@ -19,8 +20,9 @@ class Rogue extends Character{
       }
     };
     this.skills = [
-      new Back_Stab(this),
-      new Vanishing_Strike(this),
+      new Back_Stab(this.agi, this.stealth),
+      new Vanishing_Strike(this.agi),
+      new Attack(this.str)
     ]
   }
 }
