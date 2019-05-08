@@ -19,7 +19,7 @@ class Hob_Goblin {
         current: 30 * this.level_modifier
       }
     };
-    this.xp_value = Math.floor(5 * this.level_modifier);
+    this.xp_value = Math.floor(100 * this.level_modifier);
     this.skills = [new Attack(this.str)];
   }
   use(skillIndex, target) {

@@ -1,15 +1,10 @@
-const Ability = require('./ability')
+const { Direct_Damage_Ability } = require('./ability')
 
-class Sweeping_Strike extends Ability{
+class Sweeping_Strike extends Direct_Damage_Ability{
   constructor(modifier){
-    super()
-    this.name = 'Sweeping Strike';
-    this.level = 1;
-    this.min = 4;
-    this.max = 7 - this.min;
-    this.modifier = 1 + .001 * modifier;
-    this.cost = 5;
+    super('Sweeping Strik', 1, 4, 7, 5, (1 + .001 * modifier))
   }
+
   use(user, target) {
     let dmg = Math.floor((Math.random() * (this.max) + this.min) * this.modifier);
     user.useAbilityPoints(this.cost)
@@ -18,16 +13,11 @@ class Sweeping_Strike extends Ability{
   }
 }
 
-class Shield_Bash extends Ability{
+class Shield_Bash extends Direct_Damage_Ability{
   constructor(modifier){
-    super()
-    this.name = 'Shield Bash';
-    this.level = 1;
-    this.min = 5;
-    this.max = 5;
-    this.modifier = 1 + .0015 * modifier
-    this.cost = 6;
+    super('Shield Bash', 1, 5, 5, 6, (1 + .0015 * modifier))
   }
+
   use(user, target) {
     let dmg = Math.floor((Math.random() * (this.max) + this.min) * this.modifier);
     user.useAbilityPoints(this.cost)

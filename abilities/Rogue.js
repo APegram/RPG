@@ -1,16 +1,12 @@
-const Ability = require('./ability')
+const { Direct_Damage_Ability } = require('./ability')
 
-class Back_Stab extends Ability{
+//-- Super('spell name', level, min dmg, max dmg, cost, modifier math (if none, defaults to 1)) ---------------
+
+class Back_Stab extends Direct_Damage_Ability{
   constructor(modifier, stealth){
-    super()
-    this.name = 'Back Stab';
-    this.level = 1;
-    this.stealth_modifier = 1.75;
-    this.min = 4
-    this.max = 5 - this.min;
-    this.modifier = stealth ? stealth_modifier + 1 + .001 * modifier : 1 + .001 * modifier;
-    this.cost = 5;
+    super('Back Stab', 1, 4, 5, 5, (stealth ? 1.75 + 1 + .001 * modifier : 1 + .001 * modifier))
   }
+
   use(user, target) {
     let dmg = Math.floor((Math.random() * (this.max) + this.min) * this.modifier);
     user.useAbilityPoints(this.cost)
@@ -19,16 +15,11 @@ class Back_Stab extends Ability{
   }
 }
 
-class Vanishing_Strike extends Ability{
+class Vanishing_Strike extends Direct_Damage_Ability{
   constructor(modifier){
-    super()
-    this.name = 'Vanishing Strike';
-    this.level = 1;
-    this.min = 3;
-    this.max = 3;
-    this.modifier = 1 + .001 * modifier;
-    this.cost = 6;
+    super('Vanishing Strike', 1, 3, 3, 6, (1 + .001 * modifier))
   }
+
   use(user, target) {
     let dmg = Math.floor((Math.random() * (this.max) + this.min) * this.modifier);
     user.useAbilityPoints(this.cost)

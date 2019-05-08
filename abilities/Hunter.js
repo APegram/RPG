@@ -1,15 +1,12 @@
-const Ability = require('./ability')
+const { Direct_Damage_Ability } = require('./ability')
 
-class Explosive_Shot extends Ability{
+//-- Super('spell name', level, min dmg, max dmg, cost, modifier math (if none, defaults to 1)) ---------------
+
+class Explosive_Shot extends Direct_Damage_Ability{
   constructor(modifier){
-    super()
-    this.name = 'Explosive Shot';
-    this.level = 1;
-    this.min = 1;
-    this.max = 8 - this.min;
-    this.modifier = 1 + .001 * modifier
-    this.cost = 5;
+    super('Explosive Shot', 1, 1, 8, 5, (1+.001*modifier))
   }
+
   use(user, target) {
     let dmg = Math.floor((Math.random() * (this.max) + this.min) * this.modifier);
     user.useAbilityPoints(this.cost)
@@ -18,16 +15,11 @@ class Explosive_Shot extends Ability{
   }
 }
 
-class Piercing_Arrow extends Ability{
+class Piercing_Arrow extends Direct_Damage_Ability{
   constructor(modifier){
-    super()
-    this.name = 'Piercing Arrow';
-    this.level = 1;
-    this.min = 3;
-    this.max = 7 - this.min;
-    this.modifier = 1 + .0015 * modifier;
-    this.cost = 6;
+    super('Piercing Arrow', 1, 3, 7, 6, (1+.0015*modifier))
   }
+
   use(user, target) {
     let dmg = Math.floor((Math.random() * (this.max) + this.min) * this.modifier);
     user.useAbilityPoints(this.cost)
