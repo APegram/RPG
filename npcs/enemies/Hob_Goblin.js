@@ -3,23 +3,26 @@ let { Attack } = require('../../abilities/Basic')
 
 class Hob_Goblin {
   constructor(name = 'Hob Goblin', level = 1) {
-    const skill_level = 1 + Math.round(level / 3);
+    const stat_mod = 1 + (.20*level - .20)
     this.type = 'npc';
     this.name = name;
     this.level = level;
-    this.agi = 9;
-    this.int = 6;
-    this.spd = 7;
-    this.str = 10;
-    this.wis = 7
-    this.level_modifier = 1 + level / 10;
+    this.agi = Math.floor(9 * stat_mod)
+    this.int = Math.floor(6 * stat_mod)
+    this.spd = Math.floor(7 * stat_mod)
+    this.str = Math.floor(10 * stat_mod)
+    this.wis = Math.floor(7 * stat_mod)
     this.resources = {
       health: {
-        max: 30 * this.level_modifier,
-        current: 30 * this.level_modifier
+        max: Math.floor(30 * stat_mod),
+        current: Math.floor(30 * stat_mod),
+      },
+      ability: {
+        max: Math.floor(30 * stat_mod),
+        current: Math.floor(30 * stat_mod),
       }
     };
-    this.xp_value = Math.floor(100 * this.level_modifier);
+    this.xp_value = Math.floor(5 * stat_mod);
     this.skills = [new Attack(this.str)];
   }
   use(skillIndex, target) {
