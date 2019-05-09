@@ -48,13 +48,15 @@ class Character {
   Skills: ${this.skills}
   `)
   }
+
   findSelect(obj, skillName, keyName = 'name') {
-    Object.keys(obj).reduce((key, val) =>
+    let index = Object.keys(obj).reduce((key, val) =>
       (obj[val][keyName] !== skillName ? key : {
         ...key,
         [val]: obj[val]
       }
       ), {})
+    return index
   }
 
   skillIndex(cb, where, what) {
