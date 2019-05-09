@@ -6,7 +6,7 @@ class Character {
     this.level = level;
     this.xp = {
       current: xp,
-      max: 33 * this.level
+      max: 33 * this.level,
     };
     this.name = name;
     this.race = race;
@@ -25,28 +25,28 @@ class Character {
       health: {
         type: 'Health',
         max: Math.floor(20 + (this.str * 1.4)),
-        current: Math.floor(20 + (this.str * 1.4))
+        current: Math.floor(20 + (this.str * 1.4)),
       }
     };
-    this.printStats = function () {
-      console.log(`
-    Name: ${this.name}
-    Race: ${this.race}
-    Class: ${this.className}
-    Hit Points: ${this.resources.health.current}
-    ${this.resources.ability.type}: ${this.resources.ability.current}
-    Agility: ${this.agi}
-    Strength: ${this.str}
-    Wisdom: ${this.wis}
-    Intelligence: ${this.int}
-    Weapon: ${this.weapon}
-    Skills: ${this.skills}
-    `);
-    };
+  }
+  printStats() {
+    console.log(`
+  Name: ${this.name}
+  Race: ${this.race}
+  Class: ${this.className}
+  Hit Points: ${this.resources.health.current}
+  ${this.resources.ability.type}: ${this.resources.ability.current}
+  Agility: ${this.agi}
+  Strength: ${this.str}
+  Wisdom: ${this.wis}
+  Intelligence: ${this.int}
+  Weapon: ${this.weapon}
+  Skills: ${this.skills}
+  `)
   }
 
   use(skillIndex, target) {
-    this.skills[skillIndex].use(this, target)
+    this.skills[skillIndex].use(this, target);
   }
 
   useAbilityPoints(amount) {
@@ -57,13 +57,13 @@ class Character {
     this.resources.health.current -= amount;
   }
   levelUp(amount){
-    this.xp.current += amount || 0
+    this.xp.current += amount || 0;
     if (this.xp.current > this.xp.max){
-      this.level++
-      this.xp.current -= this.xp.max
-      this.xp.max *= 2
-      console.log(`${this.name} has reached level ${this.level}!`)
-      this.levelUp()
+      this.level++;
+      this.xp.current -= this.xp.max;
+      this.xp.max *= 2;
+      console.log(`${this.name} has reached level ${this.level}!`);
+      this.levelUp();
     }
     return
   }
