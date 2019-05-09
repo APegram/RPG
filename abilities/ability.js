@@ -2,16 +2,29 @@
 //-- MODIFIER math logic must be done in the argument passed in
 
 class Direct_Damage_Ability {
-  constructor(name, level, min, max, cost, modifier = 1){
+  constructor(name, level, min, max, cost, modifier = 1, skill_options){
     this.name = name;
     this.level = level;
     this.min = min;
     this.max = max - min;
     this.cost = cost;
     this.modifier = modifier;
+    this.isAttack = skill_options.isAttack || false;
+    this.isSkill = skill_options.isSkill || false;
+    this.isSpell = skill_options.isSpell || false;
   }
-  use() {
-    throw new Error("Abstract method.");
+  use(user, target) {
+    let message = null
+    let dmg = Math.floor((Math.random() * (this.max) + this.min) * this.modifier);
+    user.useAbilityPoints(this.cost)
+    target.takeDamage(dmg)
+
+    message = 
+    this.isSpell ? `${user.name} cast ${this.name} on ${target.name} dealing ${dmg} damage!` :
+    this.isAttack ? `${user.name} ${this.name}s ${target.name}, dealing ${dmg} damage.` :
+    this.isSkill ? `${user.name} uses ${this.name} on ${target.name} dealing ${dmg} damage!` : null
+
+    console.log(message)
   }
 }
 

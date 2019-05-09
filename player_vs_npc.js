@@ -8,7 +8,6 @@ let P3 = new Hunter('Rosa', 'Undead');
 let P4 = new Novice('Mio', 'Yjorizan');
 let P5 = new Warrior('Baecon', 'Gnoll');
 
-
 let party = [P1, P2, P3, P4, P5]
 let enemies = []
 let earned_xp = 0;
@@ -82,8 +81,6 @@ function victory(earned_xp){
   })
   console.log('victory done')
 }
-
-
 
 pre_combat(party)
 // console.log(new_enemy)

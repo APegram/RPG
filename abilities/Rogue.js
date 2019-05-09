@@ -4,7 +4,7 @@ const { Direct_Damage_Ability } = require('./ability')
 
 class Back_Stab extends Direct_Damage_Ability{
   constructor(modifier, stealth){
-    super('Back Stab', 1, 4, 5, 5, (stealth ? 1.75 + 1 + .001 * modifier : 1 + .001 * modifier))
+    super('Back Stab', 1, 4, 5, 5, (stealth ? 1.75 + 1 + .001 * modifier : 1 + .001 * modifier), { isCustom: true })
   }
 
   use(user, target) {
@@ -17,7 +17,7 @@ class Back_Stab extends Direct_Damage_Ability{
 
 class Vanishing_Strike extends Direct_Damage_Ability{
   constructor(modifier){
-    super('Vanishing Strike', 1, 3, 3, 6, (1 + .001 * modifier))
+    super('Vanishing Strike', 1, 3, 3, 6, (1 + .001 * modifier), { isCustom: true })
   }
 
   use(user, target) {
