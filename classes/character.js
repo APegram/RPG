@@ -1,4 +1,5 @@
 "use strict"
+let { Attack } = require('../abilities/Basic');
 
 class Character {
   constructor(name, race, level, agi, str, wis, int, spd, xp) {
@@ -28,6 +29,9 @@ class Character {
         current: Math.floor(20 + (this.str * 1.4)),
       }
     };
+    this.attack = new Attack(this.str);
+    this.items = [];
+    this.menu = ['Attack', 'Skills', 'Items']
   }
   printStats() {
     console.log(`
@@ -45,8 +49,19 @@ class Character {
   `)
   }
 
-  use(skillIndex, target) {
-    this.skills[skillIndex].use(this, target);
+  use(menuSelect, skillIndex, target) {
+    switch (menuSelect){
+      case this.menu[1]:
+        this.skills[skillIndex].use(this, target);
+        break;
+      case this.menu[2]:
+        // this.items[itemIndex].use(this, target);
+        console.log('currently there are no items')
+        break;
+      default:
+        this.attack.use(this, target);
+        break;
+    }
   }
 
   useAbilityPoints(amount) {
