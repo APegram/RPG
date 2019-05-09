@@ -14,17 +14,14 @@ class Direct_Damage_Ability {
     this.isSpell = skill_options.isSpell || false;
   }
   use(user, target) {
-    let message = null
     let dmg = Math.floor((Math.random() * (this.max) + this.min) * this.modifier);
     user.useAbilityPoints(this.cost)
     target.takeDamage(dmg)
 
-    message = 
-    this.isSpell ? `${user.name} cast ${this.name} on ${target.name} dealing ${dmg} damage!` :
-    this.isAttack ? `${user.name} ${this.name}s ${target.name}, dealing ${dmg} damage.` :
-    this.isSkill ? `${user.name} uses ${this.name} on ${target.name} dealing ${dmg} damage!` : null
+    this.isSpell ? console.log(`${user.name} cast ${this.name} on ${target.name} dealing ${dmg} damage!`) :
+    this.isAttack ? console.log(`${user.name} ${this.name}s ${target.name}, dealing ${dmg} damage.`) :
+    this.isSkill ? console.log(`${user.name} uses ${this.name} on ${target.name} dealing ${dmg} damage!`) : null
 
-    console.log(message)
   }
 }
 
