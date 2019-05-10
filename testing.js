@@ -35,4 +35,4 @@ function test(){
 // let pick = skillSlot(useSelect, p2.skills, 'Fireball')
 // console.log(pick)
 
-p2.use('Skills', 'Fireball', p2)
+p2.use(p2.menu[Math.floor(Math.random() * 2)], p2, 'Frostbolt')

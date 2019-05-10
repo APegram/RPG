@@ -31,7 +31,7 @@ class Character {
     };
     this.attack = new Attack(this.str);
     this.items = [];
-    this.menu = ['Attack', 'Skills', 'Items']
+    this.menu = ['Attack', 'Skills']
   }
   printStats() {
     console.log(`
@@ -61,16 +61,14 @@ class Character {
 
   skillIndex(cb, where, what) {
     let x = cb(where, what)
-    console.log(x)
     return parseInt(Object.keys(x))
   }
 
-  use(menuSelect, skillName, target) {
+  use(menuSelect, target, skillName = 'Attack') {
     let skillIndex = null;
     switch (menuSelect) {
       case this.menu[1]:
-      //hard coded 'Fireball' for testing
-        skillIndex = this.skillIndex(this.findSelect, this.skills, 'Fireball')
+        skillIndex = this.skillIndex(this.findSelect, this.skills, skillName)
         this.skills[skillIndex].use(this, target);
         break;
       case this.menu[2]:
