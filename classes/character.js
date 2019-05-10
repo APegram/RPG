@@ -1,4 +1,5 @@
 "use strict"
+let { Attack } = require('../abilities/Basic');
 
 class Character {
   constructor(name, race, level, agi, str, wis, int, spd, xp) {
@@ -28,6 +29,9 @@ class Character {
         current: Math.floor(20 + (this.str * 1.4)),
       }
     };
+    this.attack = new Attack(this.str);
+    this.items = [];
+    this.menu = ['Attack', 'Skills']
   }
   printStats() {
     console.log(`
@@ -45,8 +49,36 @@ class Character {
   `)
   }
 
-  use(skillIndex, target) {
-    this.skills[skillIndex].use(this, target);
+  findSelect(obj, skillName, keyName = 'name') {
+    let index = Object.keys(obj).reduce((key, val) =>
+      (obj[val][keyName] !== skillName ? key : {
+        ...key,
+        [val]: obj[val]
+      }
+      ), {})
+    return index
+  }
+
+  skillIndex(cb, where, what) {
+    let x = cb(where, what)
+    return parseInt(Object.keys(x))
+  }
+
+  use(menuSelect, target, skillName = 'Attack') {
+    let skillIndex = null;
+    switch (menuSelect) {
+      case this.menu[1]:
+        skillIndex = this.skillIndex(this.findSelect, this.skills, skillName)
+        this.skills[skillIndex].use(this, target);
+        break;
+      case this.menu[2]:
+        // this.items[itemIndex].use(this, target);
+        console.log('currently there are no items')
+        break;
+      default:
+        this.attack.use(this, target);
+        break;
+    }
   }
 
   useAbilityPoints(amount) {
@@ -56,9 +88,9 @@ class Character {
   takeDamage(amount) {
     this.resources.health.current -= amount;
   }
-  levelUp(amount){
+  levelUp(amount) {
     this.xp.current += amount || 0;
-    if (this.xp.current > this.xp.max){
+    if (this.xp.current > this.xp.max) {
       this.level++;
       this.xp.current -= this.xp.max;
       this.xp.max *= 2;
@@ -83,7 +115,7 @@ module.exports = Character
   //     this.resources.health.current = updated_health
   //   }
   // }
-  
+
   // Character.prototype.ap_regen = function() {
   //   let ability_type = this.resources.ability.type
   //   //everyh 30 agi = +1energy/tick
@@ -95,7 +127,7 @@ module.exports = Character
   //   //amount of rage lost every second
   //   let rage_degen = 1
   //   let updated_ap
-  
+
   //   switch (ability_type){
   //     case 'energy':
   //       updated_ap += energy_regen
